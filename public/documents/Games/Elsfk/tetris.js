@@ -10,6 +10,7 @@ const godModeButton = document.getElementById('god-mode');
 const pauseButton = document.getElementById('pause');
 const restartButton = document.getElementById('restart');
 const endGameButton = document.getElementById('end-game');
+const closeTabButton = document.getElementById('close-tab');
 const cells = [];
 const nextPieceCells = [];
 const boardWidth = 10;
@@ -191,6 +192,13 @@ function endGame() {
     }
 }
 
+// 关闭当前标签页
+function closeTab() {
+    if (confirm('确定要关闭当前标签页吗？')) {
+        window.location.href = 'about:blank'; // 跳转到空白页面
+    }
+}
+
 // 监听键盘事件
 document.addEventListener('keydown', (e) => {
     if (isGameOver || isPaused) return;
@@ -292,3 +300,4 @@ godModeButton.addEventListener('click', () => {
 pauseButton.addEventListener('click', pauseGame);
 restartButton.addEventListener('click', restartGame);
 endGameButton.addEventListener('click', endGame);
+closeTabButton.addEventListener('click', closeTab);
