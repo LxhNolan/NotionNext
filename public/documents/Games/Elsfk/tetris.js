@@ -16,10 +16,11 @@ const mobileRightButton = document.getElementById('mobile-right');
 const mobileDownButton = document.getElementById('mobile-down');
 const mobileRotateButton = document.getElementById('mobile-rotate');
 const mobileFlipButton = document.getElementById('mobile-flip');
+const orientationWarning = document.getElementById('orientation-warning');
 const cells = [];
 const nextPieceCells = [];
-const boardWidth = 10;
-const boardHeight = 20;
+let boardWidth = 10; // 默认宽度
+let boardHeight = 20;
 let currentPosition = 4;
 let currentTetromino = [];
 let nextTetromino = [];
@@ -29,6 +30,17 @@ let isPaused = false;
 let intervalId;
 let difficulty = 1000; // 默认下落速度（普通难度）
 let speedIncreaseInterval;
+
+// 检查设备方向
+function checkOrientation() {
+    if (window.innerHeight > window.innerWidth) {
+        orientationWarning.style.display = 'flex';
+        gameContainer.style.display = 'none';
+    } else {
+        orientationWarning.style.display = 'none';
+        gameContainer.style.display = 'flex';
+    }
+}
 
 // 初始化游戏板
 function init() {
@@ -277,22 +289,26 @@ function flip() {
 
 // 设置难度
 easyButton.addEventListener('click', () => {
-    difficulty = 1500; // 简单难度，下落速度较慢
+    boardWidth = 10; // 简单难度，默认宽度
+    difficulty = 1500;
     init();
 });
 
 normalButton.addEventListener('click', () => {
-    difficulty = 1000; // 普通难度
+    boardWidth = 12; // 普通难度，扩大 2 列
+    difficulty = 1000;
     init();
 });
 
 hardButton.addEventListener('click', () => {
-    difficulty = 500; // 困难难度，下落速度较快
+    boardWidth = 14; // 困难难度，扩大 4 列
+    difficulty = 500;
     init();
 });
 
 godModeButton.addEventListener('click', () => {
-    difficulty = 1000; // 初始速度
+    boardWidth = 10; // 无敌难度，默认宽度
+    difficulty = 1000;
     init();
     speedIncreaseInterval = setInterval(() => {
         difficulty = Math.max(100, difficulty - 50); // 每隔一段时间加快速度
@@ -313,3 +329,10 @@ mobileRightButton.addEventListener('click', moveRight);
 mobileDownButton.addEventListener('click', moveDown);
 mobileRotateButton.addEventListener('click', rotate);
 mobileFlipButton.addEventListener('click', flip);
+
+// 监听设备方向变化
+window.addEventListener('resize', checkOrientation);
+window.addEventListener('orientationchange', checkOrientation);
+
+// 初始化时检查方向
+checkOrientation();
