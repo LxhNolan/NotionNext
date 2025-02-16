@@ -13,9 +13,9 @@ const endGameButton = document.getElementById('end-game');
 const closeTabButton = document.getElementById('close-tab');
 const mobileLeftButton = document.getElementById('mobile-left');
 const mobileRightButton = document.getElementById('mobile-right');
+const mobileDownButton = document.getElementById('mobile-down');
 const mobileRotateButton = document.getElementById('mobile-rotate');
 const mobileFlipButton = document.getElementById('mobile-flip');
-const mobileDownButton = document.getElementById('mobile-down');
 const cells = [];
 const nextPieceCells = [];
 const boardWidth = 10;
@@ -89,7 +89,7 @@ function draw() {
 // 绘制下一个方块
 function drawNextPiece() {
     nextPieceCells.forEach(cell => cell.classList.remove('tetromino'));
-    const centerOffset = 7; // 将方块居中显示在 6x6 的网格中
+    const centerOffset = 9; // 将方块居中显示在 6x6 的网格中
     nextTetromino.forEach(index => {
         const row = Math.floor(index / boardWidth);
         const col = index % boardWidth;
@@ -307,9 +307,9 @@ restartButton.addEventListener('click', restartGame);
 endGameButton.addEventListener('click', endGame);
 closeTabButton.addEventListener('click', closeTab);
 
-// 绑定移动端按钮事件
+// 绑定手机虚拟按键事件
 mobileLeftButton.addEventListener('click', moveLeft);
 mobileRightButton.addEventListener('click', moveRight);
+mobileDownButton.addEventListener('click', moveDown);
 mobileRotateButton.addEventListener('click', rotate);
 mobileFlipButton.addEventListener('click', flip);
-mobileDownButton.addEventListener('click', moveDown);
