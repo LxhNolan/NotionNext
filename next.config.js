@@ -232,3 +232,13 @@ const nextConfig = {
 module.exports = process.env.ANALYZE
   ? withBundleAnalyzer(nextConfig)
   : nextConfig
+
+module.exports = {
+  webpack: (config) => {
+    config.module.rules.push({
+      test: /\.(ts|tsx)$/,
+      exclude: /public\/videos/,  // 忽略视频目录下的.ts文件
+    });
+    return config;
+  },
+};
