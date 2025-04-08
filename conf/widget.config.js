@@ -42,6 +42,13 @@ module.exports = {
       cover: 'https://p1.music.126.net/zYqptzyHld2ylpb5FOoqDA==/1785606883508227.jpg'
     },
     {
+      name: '天真的橡皮（DJ版）',
+      artist: '白水寒',
+      url: 'https://www.happinessrailway.com/mp3/968598300.mp3',
+      cover: 'https://www.happinessrailway.com/images/home.png',
+      lrc: 'https://www.happinessrailway.com/mp3/968598300.lrc'
+    },
+    {
       name: '风を共に舞う気持ち',
       artist: 'Falcom Sound Team jdk',
       url: 'https://music.163.com/song/media/outer/url?id=731419.mp3',
