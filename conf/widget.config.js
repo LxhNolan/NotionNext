@@ -36,6 +36,12 @@ module.exports = {
   MUSIC_PLAYER_ORDER: process.env.NEXT_PUBLIC_MUSIC_PLAYER_ORDER || 'list', // 默认播放方式，顺序 list，随机 random
   MUSIC_PLAYER_AUDIO_LIST:  [ // 示例音乐列表。除了以下配置外，还可配置歌词，具体配置项看此文档 https://aplayer.js.org/#/zh-Hans/
     {
+      name: 'Traveling Light',
+      artist: 'Joel Hanson/Sara Groves',
+      url: 'https://music.163.com/song/media/outer/url?id=1491585.mp3',
+      cover: 'https://p1.music.126.net/zYqptzyHld2ylpb5FOoqDA==/1785606883508227.jpg'
+    },
+    {
       name: '风を共に舞う気持ち',
       artist: 'Falcom Sound Team jdk',
       url: 'https://music.163.com/song/media/outer/url?id=731419.mp3',
