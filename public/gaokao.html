@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>2026高考倒计时</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: "Microsoft YaHei", sans-serif;
+        }
+
+        body {
+            min-height: 100vh;
+            background: linear-gradient(135deg, #1E88E5, #81c2f8ff);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            text-align: center;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 600px;
+            width: 100%;
+        }
+
+        h1 {
+            font-size: 42px;
+            margin-bottom: 10px;
+            text-shadow: 0 0 10px rgba(255,255,255,0.3);
+        }
+
+        .title {
+            font-size: 18px;
+            margin-bottom: 40px;
+            opacity: 0.9;
+        }
+
+        .countdown {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+            margin-bottom: 50px;
+        }
+
+        .time-box {
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(10px);
+            padding: 25px 20px;
+            border-radius: 15px;
+            min-width: 90px;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.1);
+        }
+
+        .time-box .num {
+            font-size: 48px;
+            font-weight: bold;
+            display: block;
+        }
+
+        .time-box .label {
+            font-size: 14px;
+            margin-top: 5px;
+            opacity: 0.85;
+        }
+
+        .end-text {
+            font-size: 24px;
+            color: #fff;
+            font-weight: bold;
+            display: none;
+            animation: fadeIn 1 ease forwards;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @media (max-width: 500px) {
+            h1 { font-size: 32px; }
+            .time-box .num { font-size: 36px; }
+            .countdown { gap: 10px; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🎓 2026届高考倒计时</h1>
+        <p class="title">乾坤未定，你我皆是黑马。加油！</p>
+
+        <div class="countdown" id="countdown">
+            <div class="time-box">
+                <span class="num" id="day">00</span>
+                <span class="label">天</span>
+            </div>
+            <div class="time-box">
+                <span class="num" id="hour">00</span>
+                <span class="label">时</span>
+            </div>
+            <div class="time-box">
+                <span class="num" id="minute">00</span>
+                <span class="label">分</span>
+            </div>
+            <div class="time-box">
+                <span class="num" id="second">00</span>
+                <span class="label">秒</span>
+            </div>
+        </div>
+
+        <div class="end-text" id="endText">🎉 2026届高考已开始，愿你笔锋所至，梦想开花！</div>
+    </div>
+
+    <script>
+        // 设置高考时间：2026年6月7日（可自行修改）
+        const examDate = new Date("2026-06-07 09:00:00").getTime();
+
+        function updateCountdown() {
+            const now = new Date().getTime();
+            const distance = examDate - now;
+
+            // 如果倒计时结束
+            if (distance <= 0) {
+                document.getElementById("countdown").style.display = "none";
+                document.getElementById("endText").style.display = "block";
+                return; // 停止计时
+            }
+
+            // 计算时间
+            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+            // 填充到页面（不足两位补0）
+            document.getElementById("day").innerText = days.toString().padStart(2, '0');
+            document.getElementById("hour").innerText = hours.toString().padStart(2, '0');
+            document.getElementById("minute").innerText = minutes.toString().padStart(2, '0');
+            document.getElementById("second").innerText = seconds.toString().padStart(2, '0');
+        }
+
+        // 立即执行一次，然后每秒更新
+        updateCountdown();
+        setInterval(updateCountdown, 1000);
+    </script>
+</body>
+</html>
